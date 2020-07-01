@@ -1,98 +1,71 @@
-import React from 'react';
-import logo from './logo.svg';
-import { burgers } from './const/burgers';
-import './App.css';
-import { boissons } from './const/boissons';
-import { sides } from './const/sides';
-import { Product } from './models/product';
+import React, { useReducer, createContext, Dispatch } from 'react';
+import './App.scss';
+import ProductsContainer from './containers/products';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import BasketContainer from './containers/basket';
+import { productReducer } from './reducers';
+import FormContainer from './containers/payment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHamburger } from '@fortawesome/free-solid-svg-icons';
+import { InitialStateType, ProductActions } from './models/reducerTypes';
+
+
+export const initialState: InitialStateType = {
+  products: [],
+  total: 0
+};
+
+export const AppContext = createContext<{
+  state: InitialStateType;
+  dispatch: Dispatch<ProductActions>;
+}>({
+  state: initialState,
+  dispatch: () => null
+});
+
+const mainReducer = (state: InitialStateType, action: ProductActions) => productReducer(state, action);
 
 function App() {
-  const burgersList: Array<Product> = burgers;
-  const sidesList: Array<Product> = sides;
-  const drinksList: Array<Product> = boissons;
+  const [state, dispatch] = useReducer(mainReducer, initialState);
+
   return (
-    <div className="App">
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a className="navbar-brand" href="#">
-          <img src="/docs/4.5/assets/brand/bootstrap-solid.svg" width="30" height="30" className="d-inline-block align-top" alt="" loading="lazy"></img>
-        </a>
-        <span className="navbar-text">
-          Total
-        </span>
-      </nav>
-      <div className="container">
-        <div className="row text-left mt-5">
-          <div className="col">
-            <h3>
-              Burgers
-              <small className="text-muted"> 10€</small>
-            </h3>
-          </div>
-        </div>
-
-        <div className="row">
-
-          {burgersList.map((burger:Product, index) => {
-            return <div className="col-md-3">
-              <div className="card">
-                <img src="..." className="card-img-top" alt="..."></img>
-                <div className="card-body">
-                  <h5 className="card-title">{burger.title}</h5>
-                  {burger.description}
-                </div>
-                <button className="btn btn-primary">Ajouter</button>
-              </div>
-            </div>
-          })}
-        </div>
-        <div className="row text-left mt-5">
-          <div className="col">
-            <h3>
-              Sides
-              <small className="text-muted"> 3€</small>
-            </h3>
-          </div>
-        </div>
-        <div className="row">
-          {sidesList.map((side:Product, index) => {
-            return <div className="col-md-3">
-              <div className="card">
-                <img src="..." className="card-img-top" alt="..."></img>
-                <div className="card-body">
-                  <h5 className="card-title">{side.title}</h5>
-                  {side.description}
-                </div>
-                <button className="btn btn-primary">Ajouter</button>
-              </div>
-            </div>
-          })}
-        </div>
-        <div className="row text-left mt-5">
-          <div className="col">
-            <h3>
-              Boisson
-              <small className="text-muted"> 3€</small>
-            </h3>
-          </div>
-        </div>
-        <div className="row">
-          {drinksList.map((drink:Product, index) => {
-            return <div className="col-md-3">
-              <div className="card">
-                <img src="..." className="card-img-top" alt="..."></img>
-                <div className="card-body">
-                  <h5 className="card-title">{drink.title}</h5>
-                  {drink.description}
-                </div>
-                <button className="btn btn-primary">Ajouter</button>
-              </div>
-            </div>
-          })}
-        </div>
+    <Router>
+      <div className="App">
+        <nav className="navbar sticky-top navbar-dark bg-primary mb-5">
+          <Link to="/">
+            <span className="navbar-brand">
+              <FontAwesomeIcon className="mr-3" icon={faHamburger} />
+              Portland Burger
+            </span>
+          </Link>
+          <Link to="/basket">
+            <span className="navbar-text">
+              Total : {state.total} $
+            </span>
+          </Link>
+        </nav>
+        <AppContext.Provider value={{ state, dispatch }}>
+          <Switch>
+            <Route path="/basket">
+              <BasketContainer />
+            </Route>
+            <Route path="/payment">
+              <FormContainer />
+            </Route>
+            <Route path="/">
+              <ProductsContainer />
+            </Route>
+          </Switch>
+        </AppContext.Provider>
       </div>
-
-    </div>
+    </Router>
   );
 }
+
 
 export default App;

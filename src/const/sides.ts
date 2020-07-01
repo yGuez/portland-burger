@@ -1,18 +1,21 @@
 export const sides = [
     {
-        id: 6,
+        type: 6,
         title:'coleslaw',
         description: 'Salades chou et carottes',
-        prix: 3,
+        price: 3,
+        image: require("../assets/fries.png")
     }, {
-        id: 7,
+        type: 7,
         title:'frites maison',
         description: 'Sauce ketchup',
-        prix: 3,
+        price: 3,
+        image: require("../assets/fries.png")
     }, {
-        id: 8,
+        type: 8,
         title:'frites maison',
         description: 'Sauce mayo',
-        prix: 3,
+        price: 3,
+        image: require("../assets/fries.png")
     }
 ]

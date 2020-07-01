@@ -1,28 +1,33 @@
 export const burgers = [
     {
-        id: 1,
+        type: 1,
         title:'Portland',
         description: 'Sauce BBQ, Ognon caramelisé',
-        prix: 10,
+        price: 10,
+        image: require("../assets/bugrer-512.png")
     }, {
-        id: 2,
+        type: 2,
         title:'Tokyo',
-        description: 'Sauce BBQ, Ognon caramelisé',
-        prix: 10,
+        description: 'Sauce mayo coriandre soja, shitake',
+        price: 10,
+        image: require("../assets/bugrer-512.png")
     }, {
-        id: 10,
+        type: 10,
         title:'London',
-        description: 'Sauce BBQ, Ognon caramelisé',
-        prix: 10,
+        description: 'Sauce tatare, galette de pomme de terre',
+        price: 10,
+        image: require("../assets/bugrer-512.png")
     }, {
-        id: 4,
+        type: 4,
         title:'Genève',
-        description: 'Sauce BBQ, Ognon caramelisé',
-        prix: 10,
+        description: 'Sauce fromagère, lamelle de pomme de terre snackée',
+        price: 10,
+        image: require("../assets/bugrer-512.png")
     }, {
-        id: 5,
+        type: 5,
         title:'Glasgow',
-        description: 'Sauce BBQ, Ognon caramelisé',
-        prix: 10,
+        description: 'Sauce wisky, ognon rings',
+        price: 10,
+        image: require("../assets/bugrer-512.png")
     },
 ]

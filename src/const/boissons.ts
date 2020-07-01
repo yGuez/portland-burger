@@ -2,24 +2,28 @@ import { Product } from "../models/product";
 
 export const boissons: Array<Product> = [
     {
-        id: 9,
+        type: 9,
         title:'karma cola',
         description: 'cola équitable',
-        prix: 3,
+        price: 3,
+        image: require("../assets/drink.png")
     }, {
-        id: 10,
+        type: 10,
         title:'gingerella',
         description: 'ginger beer',
-        prix: 3,
+        price: 3,
+        image: require("../assets/drink.png")
     }, {
-        id: 11,
+        type: 11,
         title:'wat water',
         description: 'menthe concombre',
-        prix: 3,
+        price: 3,
+        image: require("../assets/drink.png")
     },{
-        id: 12,
+        type: 12,
         title:'jus de pommes',
         description: 'Bio les coteaux nantais',
-        prix: 3,
+        price: 3,
+        image: require("../assets/drink.png")
     }
 ]
