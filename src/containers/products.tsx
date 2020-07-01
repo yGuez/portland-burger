@@ -4,8 +4,8 @@ import { burgers } from "../const/burgers";
 import { sides } from "../const/sides";
 import { boissons } from "../const/boissons";
 import ProductComponent from "../components/product";
-import { Types } from "../reducers";
 import { AppContext } from "../App";
+import { Types } from "../models/reducerTypes";
 
 function ProductsContainer() {
   const burgersList: Array<Product> = burgers;
